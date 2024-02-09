@@ -1,8 +1,8 @@
-from paddleocr import PaddleOCR
-from PIL import ImageGrab
+import clipboard_monitor
+from PIL import Image, ImageGrab
 import pyperclip
 import os
-import clipboard_monitor
+from paddleocr import PaddleOCR
 
 ocr = PaddleOCR(use_angle_cls=True, lang="japan")
 
@@ -20,4 +20,17 @@ def clipToText(ocr=ocr):
         text += result[0][i][1][0] + "\n"
 
     pyperclip.copy(text)
-clipToText()
+
+def print_text(text):
+	print("got text")
+	print(text)
+
+def print_files(files):
+	print("got files")
+	print(files)
+
+clipboard_monitor.on_update(print)
+clipboard_monitor.on_text(print_text)
+clipboard_monitor.on_files(print_files)
+clipboard_monitor.on_image(clipToText())
+clipboard_monitor.wait()

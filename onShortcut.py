@@ -3,7 +3,6 @@ from paddleocr import PaddleOCR
 from PIL import ImageGrab
 import pyperclip
 import os
-import clipboard_monitor
 
 ocr = PaddleOCR(use_angle_cls=True, lang="japan")
 
@@ -32,31 +31,18 @@ COMBINATIONS = [
     }
 ]
 
-def switchMode(mode):
-    return not mode
-
-mode = True
 def on_press(key):
-    global mode
     pressed.add(key)
     print(pressed)
     for c in COMBINATIONS:
         for keys in c["keys"]:
             if keys.issubset(pressed):
-                mode = switchMode(mode)
-                print(mode)
+                print("work")
+                clipToText()
 
 def on_release(key):
     if key in pressed:
         pressed.remove(key)
-'''
-clipboard_monitor.on_update(print())
-clipboard_monitor.on_text(print("text"))
-clipboard_monitor.on_image(clipToText())
-clipboard_monitor.wait()
-'''
+
 with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
-    clipboard_monitor.on_update(print())
-    clipboard_monitor.on_text(print("text"))
-    clipboard_monitor.on_image(clipToText())
     listener.join()
