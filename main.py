@@ -17,7 +17,7 @@ def clipToText(ocr=ocr):
     text = ""
     # combine text result
     for i in range(len(result[0])):
-        text += result[0][i][1][0] + "\n"
+        text += result[0][i][1][0] # + "\n"
 
     pyperclip.copy(text)
 clipToText()
