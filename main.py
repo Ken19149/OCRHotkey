@@ -18,9 +18,6 @@ def clipToText(ocr=ocr):
     # combine text result
     for i in range(len(result[0])):
         text += result[0][i][1][0] # + "\n"
-
-    if text[-1] == "x":     # remove last character if it's x
-        text = text[:-1]
     
     pyperclip.copy(text)
 clipToText()
