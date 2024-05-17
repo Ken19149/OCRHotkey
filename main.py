@@ -4,6 +4,8 @@ import pyperclip
 import os
 import clipboard_monitor
 
+genshin = (444, 1390, 2110, 1494) # (x1, y1, x2, y2)
+
 ocr = PaddleOCR(use_angle_cls=True, lang="japan")
 
 def clipToText(ocr=ocr):
