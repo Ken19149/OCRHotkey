@@ -3,10 +3,23 @@ from PIL import ImageGrab
 import pyperclip
 import os
 import clipboard_monitor
+import socket
 
+# task 1 - add preset (box position) for applications (genshin, star rail, etc)
+# task 2 - make the program loop so as to not wait long for the model to load
+
+# dialogue box position
 genshin = (444, 1390, 2110, 1494) # (x1, y1, x2, y2)
+HSR = (310, 1230, 2240, 1350)
+
+mode = HSR
 
 ocr = PaddleOCR(use_angle_cls=True, lang="japan")
+
+port = 4444
+server = socket.socket()
+server.bind(("127.0.0.1", port))
+server.listen(1)
 
 def isClipboardImg():
     try:
@@ -17,12 +30,11 @@ def isClipboardImg():
         return False    # if couldn't then clipboard isn't
 
 def clipToText(ocr=ocr):
-    print(isClipboardImg())
     if isClipboardImg():
         img = ImageGrab.grabclipboard()
         img.save("OCR_temp.png", "PNG")
     else:
-        img = ImageGrab.grab(bbox=genshin, all_screens=False)
+        img = ImageGrab.grab(bbox=mode, all_screens=False)
         img.save("OCR_temp.png", "PNG")
 
     img_path = "OCR_temp.png"
@@ -35,4 +47,9 @@ def clipToText(ocr=ocr):
         text += result[0][i][1][0] # + "\n"
     
     pyperclip.copy(text)
-clipToText()
+    return text
+
+while True:
+    c, addr = server.accept()
+    print(clipToText()) 
+    c.close()

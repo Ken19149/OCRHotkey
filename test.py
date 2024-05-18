@@ -1,17 +1,27 @@
-import win32clipboard
+from paddleocr import PaddleOCR
 from PIL import ImageGrab
 
+ocr = PaddleOCR(use_angle_cls=True, lang="japan")
 
-win32clipboard.OpenClipboard()
-data = win32clipboard.GetClipboardData()
-win32clipboard.CloseClipboard()
+img_1 = "test.png"
+img_2 = "test1.png"
 
-print(type(data))
+def scan(img_path):
+    result = ocr.ocr(img_path, cls=True)
 
-# data = ImageGrab.grabclipboard()
+    text = ""
+    for i in range(len(result[0])):
+        text += result[0][i][1][0] 
+
+    return text
+
 '''
-genshin = (444, 1390, 2110, 1494) # (x1, y1, x2, y2)
-
-ss = ImageGrab.grab(bbox=genshin, all_screens=False)
-ss.save("test.png", "PNG")
+print(scan(img_1))
+print(scan(img_2))
 '''
+
+result = ocr.ocr("aaa.png", cls=True)
+text = ""
+for i in range(len(result[0])):
+    text += result[0][i][1][0] 
+print(text)
