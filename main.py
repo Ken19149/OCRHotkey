@@ -10,9 +10,10 @@ import socket
 
 # dialogue box position
 genshin = (444, 1390, 2110, 1494) # (x1, y1, x2, y2)
+genshin_teapot = (444, 1370, 2110, 1470)
 HSR = (310, 1230, 2240, 1350)
 
-mode = HSR
+mode = genshin_teapot
 
 ocr = PaddleOCR(use_angle_cls=True, lang="japan")
 
@@ -43,13 +44,17 @@ def clipToText(ocr=ocr):
 
     text = ""
     # combine text result
-    for i in range(len(result[0])):
-        text += result[0][i][1][0] # + "\n"
+    try:
+        for i in range(len(result[0])):
+            text += result[0][i][1][0] # + "\n"
+    except:
+        pass
     
     pyperclip.copy(text)
     return text
 
 while True:
     c, addr = server.accept()
+    print("loading")
     print(clipToText()) 
     c.close()
