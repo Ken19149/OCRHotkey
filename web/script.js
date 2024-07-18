@@ -1,0 +1,1 @@
+fetch("../result.json").then(result => result.json()).then(result => console.log(result))

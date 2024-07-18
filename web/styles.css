@@ -1,0 +1,8 @@
+@font-face {
+    font-family: genshin;
+    src: url(./fonts/ja-jp.ttf);
+  }
+
+  body {
+    font-family: genshin;
+  }
