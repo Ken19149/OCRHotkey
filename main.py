@@ -5,6 +5,7 @@ import os
 import clipboard_monitor
 import socket
 
+
 # task 1 - add preset (box position) for applications (genshin, star rail, etc)
 # task 2 - make the program loop so as to not wait long for the model to load
 
@@ -12,8 +13,9 @@ import socket
 genshin = (444, 1390, 2110, 1494) # (x1, y1, x2, y2)
 genshin_teapot = (444, 1370, 2110, 1470)
 HSR = (310, 1230, 2240, 1350)
+zzz = (600, 1200, 1900, 1480)
 
-mode = genshin_teapot
+mode = zzz
 
 ocr = PaddleOCR(use_angle_cls=True, lang="japan")
 
@@ -30,7 +32,7 @@ def isClipboardImg():
     except: 
         return False    # if couldn't then clipboard isn't
 
-def clipToText(ocr=ocr):
+def clipToText(ocr=ocr, mode=mode):
     if isClipboardImg():
         img = ImageGrab.grabclipboard()
         img.save("OCR_temp.png", "PNG")

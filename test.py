@@ -1,27 +1,11 @@
 from paddleocr import PaddleOCR
 from PIL import ImageGrab
+import json
 
 ocr = PaddleOCR(use_angle_cls=True, lang="japan")
 
-img_1 = "test.png"
-img_2 = "test1.png"
 
-def scan(img_path):
-    result = ocr.ocr(img_path, cls=True)
+result = ocr.ocr("test.png", cls=True)
 
-    text = ""
-    for i in range(len(result[0])):
-        text += result[0][i][1][0] 
-
-    return text
-
-'''
-print(scan(img_1))
-print(scan(img_2))
-'''
-
-result = ocr.ocr("aaa.png", cls=True)
-text = ""
-for i in range(len(result[0])):
-    text += result[0][i][1][0] 
-print(text)
+with open("result.json", "w", encoding="utf-8") as file:
+    json.dump(result, file, ensure_ascii=False, indent=4)
