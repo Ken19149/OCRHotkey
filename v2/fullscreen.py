@@ -3,16 +3,11 @@ from PIL import ImageGrab, Image, ImageDraw, ImageFont
 import numpy as np
 import json
 import os
+import time
 
 ocr = PaddleOCR(use_angle_cls=True, lang="japan")
-ss = ImageGrab.grab()   # screenshot
-ss.save("web/output/screen_temp.png")
-ss.close()
 
-result = ocr.ocr("web/output/screen_temp.png", cls=True)
-# os.remove("screen_temp.png")
-
-def drawBox(path="web/output/screen_temp.png", result=result):
+def drawBox(path="web/output/screen_temp.png", result=[]):
     img_box = Image.open(path) 
     draw = ImageDraw.Draw(img_box)  
     font = ImageFont.load_default(size=16)
@@ -28,11 +23,27 @@ def drawBox(path="web/output/screen_temp.png", result=result):
     # img_box.show()
     img_box.close
 
-# save result file
-with open("web/output/result.json", "w", encoding="utf-8") as file:
-    json.dump(result, file, ensure_ascii=False, indent=4)
+def start(ocr=ocr, save_screen=True, box=True):
+    ss = ImageGrab.grab()   # screenshot
+    ss.save("web/output/screen_temp.png")
+    ss.close()
 
-print(result)
+    result = ocr.ocr("web/output/screen_temp.png", cls=True)
+    if box:
+        drawBox(result=result)
+    if not save_screen:
+        os.remove("screen_temp.png")
 
-drawBox()
+    # save result file
+    with open("web/output/result.json", "w", encoding="utf-8") as file:
+        json.dump(result, file, ensure_ascii=False, indent=4)
 
+    print(result)
+
+while True:
+    start()
+    time.sleep(5)
+
+    
+
+    

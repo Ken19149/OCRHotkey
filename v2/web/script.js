@@ -2,7 +2,7 @@ fetch("./output/result.json").then(result => result.json()).then(result => displ
 
 function display(results) {
     for (i in results[0]) {
-        alert(results[0][i][1][0])
+        console.log(results[0][i][1][0])
     }
     
 }
