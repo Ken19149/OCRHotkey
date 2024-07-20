@@ -1,12 +1,24 @@
-setInterval(start, 1000)
+setInterval(start, 2000)
 
 function display(results) {
+    let img = new Image();
+    img.src = "./output/screen_temp.png"
+
     text = ""
     for (i in results[0]) {
         content = results[0][i][1][0]
-        x = results[0][i][0][3][0]
-        y = results[0][i][0][0][1]
+
+        // Pixel Position
+        /* 
+        x = (results[0][i][0][3][0]/img.width) * window.outerWidth
+        y = (results[0][i][0][0][1]/img.height) * window.outerHeight
         text += `<p style=\"position:absolute;left:${x}px;top:${y}px;\">${content}</p>`
+        */
+        
+        // Percentage Position  -> get exact position; only works on original screen
+        x = (results[0][i][0][3][0]/results[1][0]) * 100
+        y = (results[0][i][0][0][1]/results[1][1]) * 100
+        text += `<p style=\"position:absolute;left:${x}%;top:${y}%;\">${content}</p>`
     }
 
     document.getElementById("text").innerHTML = text

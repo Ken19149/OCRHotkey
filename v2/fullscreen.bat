@@ -1,0 +1,1 @@
+C:/Users/Ken/anaconda3/python.exe fullscreen.py

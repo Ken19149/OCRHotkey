@@ -29,6 +29,8 @@ def start(ocr=ocr, save_screen=True, box=True):
     ss.close()
 
     result = ocr.ocr("web/output/screen_temp.png", cls=True)
+    result.append([ss.width, ss.height])
+
     if box:
         drawBox(result=result)
     if not save_screen:
@@ -41,7 +43,7 @@ def start(ocr=ocr, save_screen=True, box=True):
     # print(result)
 
 while True:
-    start(save_screen=False, box=False)
+    start(save_screen=True, box=False)
     # time.sleep(1)
 
     

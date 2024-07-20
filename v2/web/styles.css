@@ -3,13 +3,30 @@
   src: url(./fonts/ja-jp.ttf);
 }
 
-body {
+body, html {
   font-family: genshin;
-  color: #ffffff;
-  -webkit-text-stroke: 1px #000;
-  /* background-image: url(output/screen_temp.png); */
+  color: #000000;
+  /* -webkit-text-stroke: 1px #000; */
+  height: 100%;
+  margin: 0;
 }
 
-body p {
+.bg {
+  background-image: url(output/screen_temp.png);
+  background-color: #000;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+p {
   margin: 0;
+  font-size: 16px;
+  /* font-weight: bold; */
+}
+
+::selection {
+  color: #ffffff;
+  background: #00ffff;
 }
