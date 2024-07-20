@@ -7,7 +7,7 @@ body {
   font-family: genshin;
   color: #ffffff;
   -webkit-text-stroke: 1px #000;
-  background-image: url(output/screen_temp.png);
+  /* background-image: url(output/screen_temp.png); */
 }
 
 body p {

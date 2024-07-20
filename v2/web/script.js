@@ -1,4 +1,4 @@
-fetch("./output/result.json").then(result => result.json()).then(result => display(result))
+setInterval(start, 1000)
 
 function display(results) {
     text = ""
@@ -10,4 +10,8 @@ function display(results) {
     }
 
     document.getElementById("text").innerHTML = text
+}
+
+function start() {
+    fetch("./output/result.json").then(result => result.json()).then(result => display(result))
 }

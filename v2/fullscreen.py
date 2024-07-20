@@ -32,17 +32,17 @@ def start(ocr=ocr, save_screen=True, box=True):
     if box:
         drawBox(result=result)
     if not save_screen:
-        os.remove("screen_temp.png")
+        os.remove("web/output/screen_temp.png")
 
     # save result file
     with open("web/output/result.json", "w", encoding="utf-8") as file:
         json.dump(result, file, ensure_ascii=False, indent=4)
 
-    print(result)
+    # print(result)
 
 while True:
-    start()
-    time.sleep(5)
+    start(save_screen=False, box=False)
+    # time.sleep(1)
 
     
 
