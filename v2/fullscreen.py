@@ -43,9 +43,11 @@ def start(ocr=ocr, save_screen=True, box=True):
     # print(result)
 
 while True:
-    start(save_screen=True, box=False)
-    # time.sleep(1)
-
+    try:
+        start(save_screen=True, box=False)
+        # time.sleep(1)
+    except:
+        continue
     
 
     

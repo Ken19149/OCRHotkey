@@ -1,17 +1,14 @@
 setInterval(start, 2000)
 
 function display(results) {
-    let img = new Image();
-    img.src = "./output/screen_temp.png"
-
     text = ""
     for (i in results[0]) {
         content = results[0][i][1][0]
 
         // Pixel Position
         /* 
-        x = (results[0][i][0][3][0]/img.width) * window.outerWidth
-        y = (results[0][i][0][0][1]/img.height) * window.outerHeight
+        x = (results[0][i][0][3][0]/results[1][0]) * window.outerWidth
+        y = (results[0][i][0][0][1]/results[1][1]) * window.outerHeight
         text += `<p style=\"position:absolute;left:${x}px;top:${y}px;\">${content}</p>`
         */
         
@@ -20,8 +17,7 @@ function display(results) {
         y = (results[0][i][0][0][1]/results[1][1]) * 100
         text += `<p style=\"position:absolute;left:${x}%;top:${y}%;\">${content}</p>`
     }
-
-    document.getElementById("text").innerHTML = text
+    document.getElementById("text").innerHTML = text    
 }
 
 function start() {

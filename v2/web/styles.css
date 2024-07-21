@@ -9,11 +9,12 @@ body, html {
   /* -webkit-text-stroke: 1px #000; */
   height: 100%;
   margin: 0;
+  /* background-color: transparent; */
 }
 
 .bg {
-  background-image: url(output/screen_temp.png);
-  background-color: #000;
+  /* background-image: url(output/screen_temp.png); */
+  /* background-color: #000; */
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -24,6 +25,7 @@ p {
   margin: 0;
   font-size: 16px;
   /* font-weight: bold; */
+  opacity: 0.5;
 }
 
 ::selection {
