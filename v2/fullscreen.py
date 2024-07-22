@@ -24,30 +24,30 @@ def drawBox(path="web/output/screen_temp.png", result=[]):
     img_box.close
 
 def start(ocr=ocr, save_screen=True, box=True):
-    ss = ImageGrab.grab()   # screenshot
-    ss.save("web/output/screen_temp.png")
-    ss.close()
+    try:
+        ss = ImageGrab.grab()   # screenshot
+        ss.save("web/output/screen_temp.png")
+        ss.close()
 
-    result = ocr.ocr("web/output/screen_temp.png", cls=True)
-    result.append([ss.width, ss.height])
+        result = ocr.ocr("web/output/screen_temp.png", cls=True)
+        result.append([ss.width, ss.height])
 
-    if box:
-        drawBox(result=result)
-    if not save_screen:
-        os.remove("web/output/screen_temp.png")
+        if box:
+            drawBox(result=result)
+        if not save_screen:
+            os.remove("web/output/screen_temp.png")
 
-    # save result file
-    with open("web/output/result.json", "w", encoding="utf-8") as file:
-        json.dump(result, file, ensure_ascii=False, indent=4)
+        # save result file
+        with open("web/output/result.json", "w", encoding="utf-8") as file:
+            json.dump(result, file, ensure_ascii=False, indent=4)
 
-    # print(result)
+        # print(result)
+    except:
+        pass
 
 while True:
-    try:
-        start(save_screen=True, box=False)
-        # time.sleep(1)
-    except:
-        continue
+    start(save_screen=True, box=True)
+    # time.sleep(1)
     
 
     

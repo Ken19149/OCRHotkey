@@ -1,4 +1,6 @@
-setInterval(start, 2000)
+// setInterval(start, 2000)
+
+start()
 
 function display(results) {
     text = ""
@@ -15,7 +17,8 @@ function display(results) {
         // Percentage Position  -> get exact position; only works on original screen
         x = (results[0][i][0][3][0]/results[1][0]) * 100
         y = (results[0][i][0][0][1]/results[1][1]) * 100
-        text += `<p style=\"position:absolute;left:${x}%;top:${y}%;\">${content}</p>`
+        font_size = 16
+        text += `<p style=\"position:absolute;left:${x}%;top:${y}%;font-size:${font_size}px;\">${content}</p>`
     }
     document.getElementById("text").innerHTML = text    
 }
