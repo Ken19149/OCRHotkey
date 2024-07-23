@@ -17,8 +17,11 @@ function display(results) {
         // Percentage Position  -> get exact position; only works on original screen
         x = (results[0][i][0][3][0]/results[1][0]) * 100
         y = (results[0][i][0][0][1]/results[1][1]) * 100
-        font_size = 16
+
+        text_height = results[0][i][0][3][1] - results[0][i][0][0][1]   // yBottom - yTop
+        font_size = text_height/2 *1.2
         text += `<p style=\"position:absolute;left:${x}%;top:${y}%;font-size:${font_size}px;\">${content}</p>`
+        console.log(text_height)
     }
     document.getElementById("text").innerHTML = text    
 }
