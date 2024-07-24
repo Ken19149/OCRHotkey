@@ -13,7 +13,7 @@ body, html {
 }
 
 .bg {
-  background-image: url(output/screen_box.png);
+  /* background-image: url(output/screen_box.png);*/
   /* background-color: #000; */
   height: 100%;
   background-position: center;

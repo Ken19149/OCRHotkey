@@ -28,7 +28,7 @@ def start(ocr=ocr, save_screen=True, box=True):
         ss = ImageGrab.grab()   # screenshot
         ss.save("web/output/screen_temp.png")
         ss.close()
-
+        
         result = ocr.ocr("web/output/screen_temp.png", cls=True)
         result.append([ss.width, ss.height])
 
@@ -48,6 +48,3 @@ def start(ocr=ocr, save_screen=True, box=True):
 while True:
     start(save_screen=True, box=True)
     # time.sleep(1)
-    
-
-    
