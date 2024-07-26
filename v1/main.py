@@ -56,7 +56,10 @@ def clipToText(ocr=ocr, mode=mode):
     return text
 
 while True:
-    c, addr = server.accept()
-    print("loading")
-    print(clipToText()) 
-    c.close()
+    try:
+        c, addr = server.accept()
+        print("loading")
+        print(clipToText()) 
+        c.close()
+    except:
+        continue
