@@ -1,6 +1,6 @@
-// setInterval(start, 2000)
+setInterval(start, 2000)
 
-start()
+// start()
 
 function display(results) {
     text = ""
