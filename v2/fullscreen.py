@@ -5,7 +5,7 @@ import json
 import os
 import time
 
-ocr = PaddleOCR(use_angle_cls=True, lang="japan")
+ocr = PaddleOCR(use_gpu=True, use_angle_cls=True, lang="japan")
 
 def drawBox(path="web/output/screen_temp.png", result=[]):
     img_box = Image.open(path) 

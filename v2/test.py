@@ -12,7 +12,7 @@ from PIL import ImageGrab
 while True:
     # This instance will generate an image from
     # the point of (115, 143) and (569, 283) in format of (x, y)
-    cap = ImageGrab.grab(bbox=(115, 143, 569, 283))
+    cap = ImageGrab.grab()
 
     # For us to use cv2.imshow we need to convert the image into a numpy array
     cap_arr = np.array(cap)
@@ -22,7 +22,7 @@ while True:
 
     # cv2.imshow() shows a window display and it is using the image that we got
     # use array as input to image
-    cv2.imshow("", cap_arr)
+    # cv2.imshow("", cap_arr)
 
     # Read the image that was grabbed from ImageGrab.grab using    pytesseract.image_to_string
     # This is the main thing that will collect the text information from that specific area of the window

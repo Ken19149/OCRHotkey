@@ -1,7 +1,3 @@
-import pyautogui
-import pyperclip
-
-while True:
-    print(pyautogui.position())
-
-# print((pyperclip.paste()))
+import paddle
+gpu_available  = paddle.device.is_compiled_with_cuda()
+print("GPU available:", gpu_available)
