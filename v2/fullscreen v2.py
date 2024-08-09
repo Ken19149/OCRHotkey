@@ -1,9 +1,11 @@
-# this v1 use save file to transfer information
+# v2 will use websockets to transfer data 
 
 from paddleocr import PaddleOCR
 from PIL import ImageGrab, Image, ImageDraw, ImageFont
 import numpy as np
 import json
+import asyncio
+import websockets
 import os
 import time
 

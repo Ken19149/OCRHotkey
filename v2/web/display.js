@@ -1,4 +1,4 @@
-setInterval(start, 300)
+setInterval(start, 1000)
 
 // start()
 
