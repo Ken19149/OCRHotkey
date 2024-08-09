@@ -25,7 +25,8 @@ def drawBox(path="web/output/screen_temp.png", result=[]):
         draw.text((xmin, ymin), f" {i}", fill="#ffffff", font=font, stroke_width=1)
     img_box.save("web/output/screen_box.png")
     # img_box.show()
-    img_box.close
+    img_box.close()
+
 
 def start(ocr=ocr, save_screen=True, box=True):
     try:
@@ -41,14 +42,28 @@ def start(ocr=ocr, save_screen=True, box=True):
         if not save_screen:
             os.remove("web/output/screen_temp.png")
 
-        # save result file
-        with open("web/output/result.json", "w", encoding="utf-8") as file:
-            json.dump(result, file, ensure_ascii=False, indent=4)
+        return json.dumps(result, ensure_ascii=False)
 
-        # print(result)
-    except:
-        pass
+    except Exception as e:
+        print(f"Error in start function: {e}")
+        return json.dumps({"error": str(e)})
 
-while True:
-    start(save_screen=True, box=True)
-    # time.sleep(1)
+
+# A sample data-generating function that sends data to the client every second.
+async def send_data(websocket, path):
+    while True:
+        # Create a sample message (e.g., a counter value)
+        message = start()
+
+        # print("msg: " + message)
+        await websocket.send(message)
+
+        print(f"Sent: {message}")
+        await asyncio.sleep(1)
+
+# Start the WebSocket server
+start_server = websockets.serve(send_data, "localhost", 6789)
+
+# Run the server
+asyncio.get_event_loop().run_until_complete(start_server)
+asyncio.get_event_loop().run_forever()

@@ -23,7 +23,7 @@ function display(results) {
         y = (results[0][i][0][0][1]/results[1][1]) * 100
 
         text_height = results[0][i][0][3][1] - results[0][i][0][0][1]   // yBottom - yTop
-        font_size = text_height/1.25 // 1.22 = constant
+        font_size = text_height/1.22 // 1.22 = approximate constant
         text += `<p style=\"position:absolute;left:${x}%;top:${y}%;font-size:${font_size}px;\">${content}</p>`
 
         // test
