@@ -1,9 +1,11 @@
-# this v1 use save file to transfer information
+# this v2 will use websockets to transfer data 
 
 from paddleocr import PaddleOCR
 from PIL import ImageGrab, Image, ImageDraw, ImageFont
 import numpy as np
 import json
+import asyncio
+import websockets
 import os
 import time
 
@@ -23,7 +25,8 @@ def drawBox(path="web/output/screen_temp.png", result=[]):
         draw.text((xmin, ymin), f" {i}", fill="#ffffff", font=font, stroke_width=1)
     img_box.save("web/output/screen_box.png")
     # img_box.show()
-    img_box.close
+    img_box.close()
+
 
 def start(ocr=ocr, save_screen=True, box=True):
     try:
@@ -39,14 +42,27 @@ def start(ocr=ocr, save_screen=True, box=True):
         if not save_screen:
             os.remove("web/output/screen_temp.png")
 
-        # save result file
-        with open("web/output/result.json", "w", encoding="utf-8") as file:
-            json.dump(result, file, ensure_ascii=False, indent=4)
+        return json.dumps(result, ensure_ascii=False)
 
-        # print(result)
-    except:
+    except Exception as e:
+        print(f"Error in start function: {e}")
         pass
 
-while True:
-    start(save_screen=True, box=True)
-    # time.sleep(1)
+
+# A sample data-generating function that sends data to the client every second.
+async def send_data(websocket, path):
+    while True:
+        # Create a sample message (e.g., a counter value)
+        message = start()
+
+        await websocket.send(message)
+
+        # print(f"Sent: {message}")
+        await asyncio.sleep(0.5)
+
+# Start the WebSocket server
+start_server = websockets.serve(send_data, "localhost", 6789)
+
+# Run the server
+asyncio.get_event_loop().run_until_complete(start_server)
+asyncio.get_event_loop().run_forever()

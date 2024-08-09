@@ -1,4 +1,5 @@
 function display(results) {
+    // console.log(results)
     results = JSON.parse(results)
     text = ""
     for (i in results[0]) {
@@ -25,7 +26,6 @@ function initWebSocket() {
     };
 
     socket.onmessage = (event) => {
-        // console.log(event.data)
         display(event.data)
     };
 
