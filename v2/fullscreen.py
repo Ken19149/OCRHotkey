@@ -49,11 +49,9 @@ def start(ocr=ocr, save_screen=True, box=True):
         pass
 
 
-# A sample data-generating function that sends data to the client every second.
 async def send_data(websocket, path):
     while True:
-        # Create a sample message (e.g., a counter value)
-        message = start()
+        message = start(box=False)
 
         await websocket.send(message)
 

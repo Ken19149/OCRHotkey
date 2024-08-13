@@ -1,0 +1,19 @@
+{
+  "name": "electron",
+  "version": "1.0.0",
+  "description": "use electron for OCR window overlay",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ken19149/OCRHotkey"
+  },
+  "author": "Chavangkon Kanjanakuldit",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^31.3.1"
+  }
+}
