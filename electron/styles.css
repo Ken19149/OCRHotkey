@@ -1,0 +1,36 @@
+@font-face {
+  font-family: genshin;
+  src: url(./fonts/ja-jp.ttf);
+}
+
+body, html {
+  font-family: genshin;
+  color: #000000;
+  /* -webkit-text-stroke: 1px #000; */
+  height: 100%;
+  margin: 0;
+  /* background-color: transparent; */
+  overflow: hidden;
+}
+
+.bg {
+  /* background-image: url(output/screen_box.png); */
+  /* background-color: #000; */
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+p {
+  margin: 0;
+  font-size: 16px;
+  /* white-space: nowrap; */
+  /* font-weight: bold; */
+  opacity: 1;
+}
+
+::selection {
+  color: #ffffff;
+  background: #00ffff;
+}
