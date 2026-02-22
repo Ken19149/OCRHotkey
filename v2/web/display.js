@@ -1,5 +1,5 @@
 function display(results) {
-    // console.log(results)
+    console.log(results)
     results = JSON.parse(results)
     text = ""
     for (i in results[0]) {
