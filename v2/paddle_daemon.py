@@ -4,8 +4,6 @@ import subprocess
 import warnings
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
-os.environ['FLAGS_enable_pir_api'] = '0'
-os.environ['FLAGS_use_mkldnn'] = '0'
 
 from paddleocr import PaddleOCR
 
